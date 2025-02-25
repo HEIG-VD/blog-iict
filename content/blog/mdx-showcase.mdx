@@ -1,0 +1,206 @@
+---
+{
+  "title": "La Puissance de MDX : Une Démonstration des Fonctionnalités",
+  "description": "Explorez les capacités de MDX à travers des exemples interactifs, des extraits de code et l'intégration de contenu dynamique.",
+  "date": "2025-01-01",
+  "author": "Équipe de Développement Web",
+  "tags": ["mdx", "react", "javascript", "tutoriel", "développement-web"],
+  "image": "/images/sample.jpeg"
+}
+---
+
+import { Callout } from '@/components/ui/callout'
+import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Image } from '@/components/ui/image'
+import { Counter } from '@/components/demo/counter'
+import { InteractiveButton } from '@/components/demo/interactive-button'
+
+Bienvenue dans notre guide complet présentant les capacités de MDX ! Cet article démontre comment MDX combine le meilleur de Markdown avec la puissance des composants React.
+
+<Callout type="info">
+  Ceci est un guide interactif. N'hésitez pas à expérimenter avec les composants et les exemples de code pendant votre lecture !
+</Callout>
+
+## Qu'est-ce que MDX ?
+
+MDX est un format puissant qui vous permet d'écrire du JSX directement dans vos documents markdown. C'est parfait pour :
+
+- La documentation
+- Les blogs
+- L'écriture technique
+- Le contenu interactif
+
+## Composants Interactifs
+
+L'une des meilleures fonctionnalités de MDX est la possibilité d'utiliser des composants React directement dans votre markdown. Voici un exemple :
+
+<Card className="p-6 bg-white">
+  <h3 className="text-lg font-bold mb-4">Compteur Interactif</h3>
+  <Counter initialCount={0} />
+</Card>
+
+## Blocs de Code avec Coloration Syntaxique
+
+MDX prend en charge les blocs de code avec coloration syntaxique :
+
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+const getUser = async (id: string): Promise<User> => {
+  const response = await fetch(`/api/users/${id}`);
+  return response.json();
+};
+```
+
+Voici un exemple d'un composant React avec TypeScript :
+
+```tsx
+import { useState } from 'react'
+
+interface CounterProps {
+  initialCount: number;
+}
+
+export const Counter = ({ initialCount }: CounterProps) => {
+  const [count, setCount] = useState(initialCount);
+
+  return (
+    <div className="flex items-center gap-4">
+      <button
+        onClick={() => setCount(c => c - 1)}
+        className="px-4 py-2 bg-red-600 text-white rounded-md"
+        aria-label="Diminuer le compteur"
+      >
+        -
+      </button>
+      <span className="text-lg font-bold">{count}</span>
+      <button
+        onClick={() => setCount(c => c + 1)}
+        className="px-4 py-2 bg-red-600 text-white rounded-md"
+        aria-label="Augmenter le compteur"
+      >
+        +
+      </button>
+    </div>
+  );
+};
+```
+
+## Composants Personnalisés avec Props
+
+Vous pouvez passer des props à vos composants personnalisés :
+
+<Card>
+  <h3 className="text-xl font-bold mb-2">Composant Card Personnalisé</h3>
+  <div className="text-gray-600">
+    Ceci est un composant card personnalisé qui utilise Tailwind CSS pour le style.
+  </div>
+  <InteractiveButton className="mt-4">
+    Bouton Interactif
+  </InteractiveButton>
+</Card>
+
+## Gestion des Images
+
+MDX prend en charge les images optimisées avec le composant Image de Next.js :
+
+<Image
+  src="/images/sample.jpeg"
+  alt="Image exemple démontrant la gestion des images MDX"
+  width={800}
+  height={400}
+  className="rounded-lg my-4"
+/>
+
+## Listes et Mise en Forme du Texte
+
+MDX prend en charge toutes les fonctionnalités markdown standard :
+
+### Listes non ordonnées
+- Premier élément
+- Deuxième élément
+  - Élément imbriqué
+  - Autre élément imbriqué
+- Troisième élément
+
+### Listes ordonnées
+1. Première étape
+2. Deuxième étape
+3. Troisième étape
+
+### Mise en forme du texte
+- **Texte en gras** pour l'emphase
+- *Texte en italique* pour une emphase subtile
+- ~~Texte barré~~ pour le contenu obsolète
+- `code en ligne` pour les termes techniques
+
+## Tableaux
+
+| Fonctionnalité | Supporté | Notes |
+|----------------|----------|-------|
+| Composants | ✅ | Support complet des composants React |
+| Markdown | ✅ | Toutes les fonctionnalités markdown standard |
+| JSX | ✅ | Intégration transparente |
+| Style | ✅ | Fonctionne avec Tailwind CSS |
+
+## Avertissements et Notes
+
+<Callout type="warning">
+  Soyez prudent lors du mélange de la syntaxe markdown et JSX. Assurez-vous toujours d'avoir un espacement approprié entre les éléments.
+</Callout>
+
+<Callout type="tip">
+  Vous pouvez utiliser des composants personnalisés pour créer une documentation belle et interactive.
+</Callout>
+
+## Équations Mathématiques
+
+Vous pouvez inclure des équations mathématiques en utilisant la syntaxe LaTeX. Voici une équation en bloc :
+
+$$
+E = mc^2
+$$
+
+Et voici une équation en ligne : $E = mc^2$ dans votre texte.
+
+## Considérations d'Accessibilité
+
+Tous les composants interactifs de cette démonstration suivent les directives WCAG :
+
+- Labels ARIA appropriés
+- Support de la navigation au clavier
+- Contraste de couleur suffisant
+- Compatible avec les lecteurs d'écran
+
+```tsx
+// Exemple d'un composant bouton accessible
+const AccessibleButton = ({ children, onClick }) => (
+  <button
+    onClick={onClick}
+    className="px-4 py-2 bg-red-600 text-white rounded-md"
+    aria-label="Exemple de bouton interactif"
+    role="button"
+    tabIndex={0}
+  >
+    {children}
+  </button>
+);
+```
+
+## Conclusion
+
+MDX offre un moyen puissant de créer du contenu riche et interactif tout en conservant la simplicité du markdown. C'est parfait pour :
+
+- La documentation technique
+- Les tutoriels interactifs
+- Les articles de blog avec du contenu dynamique
+- Le matériel pédagogique
+
+<Callout type="info">
+  N'oubliez pas de consulter notre bibliothèque de composants pour plus d'exemples et de documentation !
+</Callout>

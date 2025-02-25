@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Syntax Highlighting */
+[data-rehype-pretty-code-fragment] {
+  @apply relative;
+}
+
+[data-rehype-pretty-code-fragment] code {
+  @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
+  counter-reset: line;
+  box-decoration-break: clone;
+}
+
+[data-rehype-pretty-code-fragment] .line {
+  @apply px-4 min-h-[1.5rem] py-0.5 w-full inline-block;
+}
+
+[data-rehype-pretty-code-fragment] .line--highlighted {
+  @apply bg-gray-800 bg-opacity-50;
+}
+
+[data-rehype-pretty-code-fragment] .word {
+  @apply rounded-md bg-gray-800 bg-opacity-50 p-1;
+}
+
+/* For inline code */
+:not(pre) > code {
+  @apply rounded bg-gray-200 px-1 py-0.5 text-gray-900 text-sm;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
