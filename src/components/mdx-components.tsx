@@ -35,6 +35,20 @@ const components = {
       );
     }
 
+    // Handle relative paths in MDX content
+    // If the path doesn't start with a slash, it's a relative path
+    if (typeof src === 'string' && !src.startsWith('/')) {
+      // Get the current URL path
+      const pathname = window.location.pathname;
+      // Extract the slug from the URL (e.g., /blog/mdx-showcase/)
+      const match = pathname.match(/\/blog\/([^\/]+)/);
+      if (match && match[1]) {
+        const slug = match[1];
+        // Update the src to point to the public directory
+        src = `/content/blog/${slug}/${src}`;
+      }
+    }
+
     // For local images where we know the dimensions
     return (
       <NextImage
