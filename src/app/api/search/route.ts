@@ -16,9 +16,12 @@ export async function GET() {
     files.map(async (file) => {
       const source = fs.readFileSync(file, 'utf8');
       const { data, content } = matter(source);
+      
+      // Extract the slug correctly from the file path
+      // For example, from 'content/blog/mdx-showcase/index.mdx' to 'mdx-showcase'
       const slug = file
-        .replace(/^src\/content\/(blog|research|people)\//, '')
-        .replace(/\.mdx$/, '');
+        .replace('content/blog/', '')
+        .replace(/\/index\.mdx$/, '');
 
       return {
         title: data.title,
