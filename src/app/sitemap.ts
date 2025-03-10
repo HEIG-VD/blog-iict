@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '',
     '/blog',
   ].map((route) => ({
-    url: `https://iict.heig-vd.ch${route}`,
+    url: `https://iict.heig-vd.ch${route}${route ? '/' : ''}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1 : 0.8,
@@ -20,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Blog post URLs
   const blogUrls = blogPosts.map((post) => ({
-    url: `https://iict.heig-vd.ch/blog/${post.slug}`,
+    url: `https://iict.heig-vd.ch/blog/${post.slug}/`,
     lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,

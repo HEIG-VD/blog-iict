@@ -16,8 +16,8 @@ function generateRssItem(post: BlogPost) {
   return `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>https://iict.heig-vd.ch/blog/${post.slug}</link>
-      <guid>https://iict.heig-vd.ch/blog/${post.slug}</guid>
+      <link>https://iict.heig-vd.ch/blog/${post.slug}/</link>
+      <guid>https://iict.heig-vd.ch/blog/${post.slug}/</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <description><![CDATA[${post.description}]]></description>
       <author>contact@heig-vd.ch (${post.author})</author>
@@ -31,7 +31,7 @@ function generateRss(posts: BlogPost[]) {
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
         <title>Blog HEIG-VD IICT</title>
-        <link>https://iict.heig-vd.ch/blog</link>
+        <link>https://iict.heig-vd.ch/blog/</link>
         <description>Actualités et articles de l'Institut des Technologies de l'Information et de la Communication (IICT) de la HEIG-VD</description>
         <language>fr-CH</language>
         <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

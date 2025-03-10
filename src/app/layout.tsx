@@ -133,7 +133,7 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link href="/feed.xml" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
-                      Flux RSS
+                      RSS Feed
                     </Link>
                   </li>
                 </ul>

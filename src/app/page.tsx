@@ -26,7 +26,7 @@ export default async function BlogPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
             <article key={post.slug} className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
-              <Link href={`/blog/${post.slug}`} className="flex-1">
+              <Link href={`/blog/${post.slug}/`} className="flex-1">
                 <div className="relative h-48 w-full overflow-hidden">
                   {post.image ? (
                     <Image

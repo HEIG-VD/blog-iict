@@ -17,7 +17,7 @@ export async function generateMetadata(
     title: `Articles tagués "${tag}" | HEIG-VD IICT`,
     description: `Découvrez tous nos articles sur le thème "${tag}" - Institut des Technologies de l'Information et de la Communication.`,
     alternates: {
-      canonical: `/blog/tag/${encodeURIComponent(tag)}`,
+      canonical: `/blog/tag/${encodeURIComponent(tag)}/`,
     },
   };
 }
@@ -48,12 +48,13 @@ export default async function Page({ params }: Props) {
         <section className="mb-16">
           <nav className="flex items-center gap-4 mb-6" aria-label="Retour">
             <Link 
-              href="/blog"
-              className="inline-flex items-center text-sm text-gray-600 hover:text-[#e1251b] transition-colors"
-              aria-label="Retour à la liste des articles"
+              href="/blog/"
+              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#e1251b]"
             >
-              <span aria-hidden="true">←</span>
-              <span className="ml-2">Retour aux articles</span>
+              <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Retour aux articles
             </Link>
           </nav>
           
@@ -77,7 +78,7 @@ export default async function Page({ params }: Props) {
               className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white hover:border-[#e1251b] transition-colors duration-200"
             >
               <Link 
-                href={`/blog/${post.slug}`} 
+                href={`/blog/${post.slug}/`}
                 className="flex-1 p-6"
                 aria-labelledby={`article-title-${post.slug}`}
               >

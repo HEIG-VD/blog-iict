@@ -4,6 +4,7 @@ import type { Configuration } from 'webpack';
 const nextConfig = {
   distDir: 'build',
   output: 'export' as const,
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },

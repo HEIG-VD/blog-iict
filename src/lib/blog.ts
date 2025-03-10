@@ -7,19 +7,27 @@ const POSTS_PATH = path.join(process.cwd(), 'content/blog');
 
 export const getBlogPosts = async (): Promise<BlogPostMetadata[]> => {
   try {
-    const files = fs.readdirSync(POSTS_PATH);
-    const posts = files
-      .filter((file) => file.endsWith('.mdx'))
-      .map((file) => {
-        const filePath = path.join(POSTS_PATH, file);
+    const directories = fs.readdirSync(POSTS_PATH, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+    
+    const posts = directories
+      .map(directory => {
+        const filePath = path.join(POSTS_PATH, directory, 'index.mdx');
+        
+        if (!fs.existsSync(filePath)) {
+          return null;
+        }
+        
         const source = fs.readFileSync(filePath, 'utf8');
         const { data } = matter(source);
         
         return {
           ...(data as BlogPostMetadata),
-          slug: file.replace('.mdx', ''),
+          slug: directory,
         };
       })
+      .filter((post): post is BlogPostMetadata => post !== null)
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return posts;
@@ -31,10 +39,21 @@ export const getBlogPosts = async (): Promise<BlogPostMetadata[]> => {
 
 export const getBlogPostBySlug = async (slug: string) => {
   try {
-    const filePath = path.join(POSTS_PATH, `${slug}.mdx`);
+    const filePath = path.join(POSTS_PATH, slug, 'index.mdx');
+    
+    if (!fs.existsSync(filePath)) {
+      return null;
+    }
+    
     const source = fs.readFileSync(filePath, 'utf8');
     
     const { data, content } = matter(source);
+    
+    // Update image path to be relative to the post directory if it's not a full URL
+    const imageData = data.image;
+    if (imageData && typeof imageData === 'string' && !imageData.startsWith('http') && !imageData.startsWith('/')) {
+      data.image = `/blog/${slug}/${imageData}`;
+    }
     
     return {
       ...(data as BlogPostMetadata),

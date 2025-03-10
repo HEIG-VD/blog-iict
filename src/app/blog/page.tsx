@@ -31,7 +31,7 @@ export default async function BlogPage() {
                 {tags.map((tag) => (
                   <Link
                     key={tag}
-                    href={`/blog/tag/${encodeURIComponent(tag)}`}
+                    href={`/blog/tag/${encodeURIComponent(tag)}/`}
                     className="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-700 hover:bg-[#e1251b] hover:text-white transition-colors"
                   >
                     {tag}
@@ -46,7 +46,7 @@ export default async function BlogPage() {
           {allPosts.map((post) => (
             <article key={post.slug} className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
               <div className="flex-1 p-6">
-                <Link href={`/blog/${post.slug}`} className="block">
+                <Link href={`/blog/${post.slug}/`} className="block">
                   <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#e1251b]">
                     {post.title}
                   </h3>
