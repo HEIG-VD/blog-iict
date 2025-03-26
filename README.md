@@ -62,24 +62,30 @@ Le site sera accessible sur [http://localhost:3000](http://localhost:3000)
 
 ### Ajouter un Article
 
-1. Créez un fichier `.mdx` dans `src/content/blog/`
-2. Ajoutez l'en-tête frontmatter :
+1. Créez un dossier pour votre article dans le dossier `src/content/blog/`
+2. Créez un fichier `index.mdx` dans le dossier de votre article.
+3. Ajoutez l'en-tête frontmatter :
    ```mdx
    ---
-   title: Titre de l'article
-   date: 'YYYY-MM-DD'
-   description: Description de l'article
+   {
+   "title": "Le titre de mon article",
+   "description": "La description de mon article",
+   "date": "2025-01-01",
+   "author": "HEIG-VD",
+   "tags": ["tag1", "tag2"],
+   "image": "image.jpeg"
+   }
    ---
    ```
-3. Rédigez votre contenu en MDX
+3. Rédigez votre contenu en [MDX](https://mdxjs.com/).
 
 ### Gestion des Images
 
-- Stockez les images dans `public/images/blog/`
-- Utilisez le composant Next.js Image :
+- Stockez les images dans le dossier de votre article
+- Utilisez le composant Next.js Image pour afficher l'image :
   ```mdx
   <Image
-    src="/images/blog/image.jpg"
+    src="image.jpeg"
     alt="Description"
     width={800}
     height={400}
